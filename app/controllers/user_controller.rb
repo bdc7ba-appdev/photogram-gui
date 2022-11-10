@@ -8,9 +8,16 @@ class UserController < ApplicationController
   end
 
   def view
-    @username = params.fetch("username")
-    
-    render({:template => "user_templates/view.html.erb"})
+    @url_username = params.fetch("username")
+    @user_matching = User.where({:username => @url_username})
+
+    @the_user = @user_matching.at(0)
+
+    if @the_user == nil
+      redirect_to("/404")
+    else
+      render({:template => "user_templates/view.html.erb"})
+    end 
   end
 
 
