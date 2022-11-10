@@ -26,9 +26,9 @@ class PhotoController < ApplicationController
     end
 
     def add_photo
-      img_url = params.fetch("input_image_url")
-      img_caption = params.fetch("input_image_caption")
-      img_owner_id = params.fetch("input_image_owner_id")
+      img_url = params.fetch("input_image")
+      img_caption = params.fetch("input_caption")
+      img_owner_id = params.fetch("input_owner_id")
 
       a_new_photo = Photo.new
       a_new_photo.image = img_url
@@ -48,8 +48,8 @@ class PhotoController < ApplicationController
 
       the_photo = matching_photos.at(0)
 
-      new_url = params.fetch("input_image_url")
-      new_caption = params.fetch("input_image_caption")
+      new_url = params.fetch("input_image")
+      new_caption = params.fetch("input_caption")
 
       the_photo.image = new_url
       the_photo.caption = new_caption
@@ -64,7 +64,7 @@ class PhotoController < ApplicationController
     def comment
       commentor_id = params.fetch("input_author_id")
       commented_photo_id = params.fetch("input_photo_id")
-      comment = params.fetch("input_image_comment")
+      comment = params.fetch("input_body")
       
 
       a_new_comment = Comment.new
